@@ -1,45 +1,117 @@
+import React from "react";
+import { FaEdit, FaTrash, FaPlus, FaSearch } from "react-icons/fa";
+
 const dummyProducts = [
-    { id: 1, title: "Laskar Pelangi", author: "Andrea Hirata", price: "Rp 85.000", stock: 20 },
-    { id: 2, title: "Bumi Manusia", author: "Pramoedya Ananta Toer", price: "Rp 95.000", stock: 15 },
-    { id: 3, title: "Negeri 5 Menara", author: "Ahmad Fuadi", price: "Rp 78.000", stock: 30 },
-    { id: 4, title: "Atomic Habits", author: "James Clear", price: "Rp 120.000", stock: 12 },
+    { id: 1, title: "Laskar Pelangi", author: "Andrea Hirata", price: "Rp 85.000", stock: 20, category: "Novel" },
+    { id: 2, title: "Bumi Manusia", author: "Pramoedya Ananta Toer", price: "Rp 95.000", stock: 5, category: "Sejarah" },
+    { id: 3, title: "Negeri 5 Menara", author: "Ahmad Fuadi", price: "Rp 78.000", stock: 30, category: "Inspiratif" },
+    { id: 4, title: "Atomic Habits", author: "James Clear", price: "Rp 120.000", stock: 0, category: "Self-Dev" },
 ];
 
 export default function Products() {
     return (
-        <div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-6">Produk Buku</h1>
+        <div className="space-y-8 bg-[#F8F9FD] min-h-screen p-2">
+            {/* Header Section */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-black text-slate-800 tracking-tight">Koleksi Buku</h1>
+                    <p className="text-sm text-gray-400 font-medium">Kelola stok dan harga buku Toko Cendakia</p>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                    <div className="relative">
+                        <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
+                        <input 
+                            type="text" 
+                            placeholder="Cari buku..." 
+                            className="pl-10 pr-4 py-2.5 bg-white border-none rounded-2xl shadow-sm text-sm focus:ring-2 focus:ring-indigo-500/20 w-64"
+                        />
+                    </div>
+                    <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-2xl text-sm font-bold shadow-lg shadow-indigo-100 transition-all active:scale-95">
+                        <FaPlus size={12} /> Tambah Buku
+                    </button>
+                </div>
+            </div>
 
-            <div className="bg-white rounded-2xl shadow overflow-hidden">
-                <table className="w-full text-sm text-left">
-                    <thead className="bg-red-500 text-white">
-                        <tr>
-                            <th className="px-6 py-3">#</th>
-                            <th className="px-6 py-3">Judul Buku</th>
-                            <th className="px-6 py-3">Penulis</th>
-                            <th className="px-6 py-3">Harga</th>
-                            <th className="px-6 py-3">Stok</th>
+            {/* Table Container */}
+            <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
+                <table className="w-full text-left border-collapse">
+                    <thead>
+                        <tr className="border-b border-gray-50">
+                            <th className="px-8 py-5 text-[11px] font-black text-gray-400 uppercase tracking-widest">Buku</th>
+                            <th className="px-6 py-5 text-[11px] font-black text-gray-400 uppercase tracking-widest">Kategori</th>
+                            <th className="px-6 py-5 text-[11px] font-black text-gray-400 uppercase tracking-widest">Harga</th>
+                            <th className="px-6 py-5 text-[11px] font-black text-gray-400 uppercase tracking-widest">Stok</th>
+                            <th className="px-8 py-5 text-[11px] font-black text-gray-400 uppercase tracking-widest text-right">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-gray-50">
                         {dummyProducts.map((product) => (
-                            <tr
-                                key={product.id}
-                                className="border-b hover:bg-red-50 transition"
-                            >
-                                <td className="px-6 py-4 text-gray-500">{product.id}</td>
-                                <td className="px-6 py-4 font-medium text-gray-800">
-                                    {product.title}
+                            <tr key={product.id} className="hover:bg-slate-50/50 transition-colors group">
+                                {/* Judul & Penulis */}
+                                <td className="px-8 py-5">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-16 bg-slate-100 rounded-lg flex-shrink-0 flex items-center justify-center text-slate-400 font-bold text-xs border border-gray-100 group-hover:border-indigo-200 transition-colors">
+                                            IMG
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">{product.title}</p>
+                                            <p className="text-[11px] text-gray-400 font-medium">{product.author}</p>
+                                        </div>
+                                    </div>
                                 </td>
-                                <td className="px-6 py-4 text-gray-600">{product.author}</td>
-                                <td className="px-6 py-4 text-red-500 font-semibold">
-                                    {product.price}
+
+                                {/* Kategori */}
+                                <td className="px-6 py-5">
+                                    <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[10px] font-bold uppercase tracking-tight">
+                                        {product.category}
+                                    </span>
                                 </td>
-                                <td className="px-6 py-4 text-gray-700">{product.stock}</td>
+
+                                {/* Harga */}
+                                <td className="px-6 py-5">
+                                    <p className="text-sm font-black text-slate-800">{product.price}</p>
+                                </td>
+
+                                {/* Stok dengan Status Warna */}
+                                <td className="px-6 py-5">
+                                    <div className="flex flex-col gap-1">
+                                        <div className="flex items-center gap-2">
+                                            <div className={`w-1.5 h-1.5 rounded-full ${
+                                                product.stock > 10 ? "bg-green-500" : product.stock > 0 ? "bg-orange-500" : "bg-red-500"
+                                            }`} />
+                                            <span className="text-sm font-bold text-slate-700">{product.stock}</span>
+                                        </div>
+                                        <p className="text-[10px] text-gray-400 font-medium">
+                                            {product.stock > 0 ? "Tersedia" : "Habis"}
+                                        </p>
+                                    </div>
+                                </td>
+
+                                {/* Aksi */}
+                                <td className="px-8 py-5">
+                                    <div className="flex items-center justify-end gap-2">
+                                        <button className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all" title="Edit">
+                                            <FaEdit size={16} />
+                                        </button>
+                                        <button className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all" title="Hapus">
+                                            <FaTrash size={16} />
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                
+                {/* Footer Tabel / Pagination Simpel */}
+                <div className="px-8 py-4 bg-slate-50/50 border-t border-gray-50 flex justify-between items-center">
+                    <p className="text-[11px] text-gray-400 font-bold uppercase">Menampilkan {dummyProducts.length} Buku</p>
+                    <div className="flex gap-2">
+                        <button className="px-3 py-1 text-[11px] font-bold text-gray-400 hover:text-indigo-600 transition">Prev</button>
+                        <button className="px-3 py-1 text-[11px] font-bold text-gray-400 hover:text-indigo-600 transition">Next</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
