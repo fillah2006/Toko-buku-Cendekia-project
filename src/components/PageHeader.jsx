@@ -3,51 +3,84 @@ import { useLocation } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 
 export default function PageHeader({ title }) {
-  const location = useLocation();
-  const isDashboard = location.pathname === "/";
 
-  // Mendapatkan tanggal hari ini dengan format cantik
-  const today = new Date().toLocaleDateString("id-ID", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+    const location = useLocation();
 
-  return (
-    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
-      <div className="space-y-1">
-        <h1 className="text-3xl font-black text-slate-800 tracking-tight">
-          {title}
-        </h1>
-        <div className="flex items-center gap-2">
-          {isDashboard ? (
-            <p className="text-sm text-gray-400 font-medium">
-              Selamat datang kembali di sistem manajemen <span className="text-indigo-600 font-bold text-[13px]">TokoBuku Cendakia</span>.
-            </p>
-          ) : (
-            <div className="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest">
-              <span>Admin</span>
-              <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-              <span>Management</span>
-              <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-              <span className="text-indigo-500 italic lowercase font-medium">cendakia.app</span>
+    const isDashboard =
+        location.pathname === "/";
+
+    // Format tanggal Indonesia
+    const today = new Date().toLocaleDateString(
+        "id-ID",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+        }
+    );
+
+    return (
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-6">
+
+            {/* LEFT */}
+            <div className="flex-1">
+
+                <h1 className="text-3xl md:text-4xl font-black text-slate-800 leading-tight tracking-tight max-w-xl">
+
+                    {title}
+
+                </h1>
+
+                <p className="mt-2 text-sm text-gray-400 font-medium leading-relaxed">
+
+                    Selamat datang kembali di sistem manajemen{" "}
+
+                    <span className="text-indigo-600 font-bold">
+                        TokoBuku Cendakia
+                    </span>
+
+                </p>
+
             </div>
-          )}
-        </div>
-      </div>
 
-      {/* Widget Tanggal (Hanya tampil di Dashboard untuk kesan informatif) */}
-      {isDashboard && (
-        <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-50 self-start md:self-auto">
-          <div className="w-8 h-8 bg-orange-50 text-orange-500 rounded-lg flex items-center justify-center">
-            <FaCalendarAlt size={14} />
-          </div>
-          <div className="text-right">
-            <p className="text-[10px] text-gray-400 font-black uppercase leading-none mb-1">Hari Ini</p>
-            <p className="text-xs font-bold text-slate-700 leading-none">{today}</p>
-          </div>
+            {/* RIGHT */}
+            {isDashboard && (
+
+                <div className="flex items-center">
+
+                    {/* DATE CARD */}
+                    <div className="bg-white border border-gray-100 shadow-sm rounded-2xl px-4 py-3 flex items-center gap-3 hover:shadow-md transition-all">
+
+                        {/* ICON */}
+                        <div className="w-11 h-11 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center shrink-0">
+
+                            <FaCalendarAlt size={16} />
+
+                        </div>
+
+                        {/* TEXT */}
+                        <div>
+
+                            <p className="text-[10px] uppercase tracking-widest font-black text-gray-400">
+
+                                Hari Ini
+
+                            </p>
+
+                            <h3 className="text-sm font-black text-slate-700 leading-tight">
+
+                                {today}
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            )}
+
         </div>
-      )}
-    </div>
-  );
+    );
 }
