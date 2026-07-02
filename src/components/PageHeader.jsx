@@ -20,65 +20,40 @@ export default function PageHeader({ title }) {
     );
 
     return (
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-6">
+        <div className="mb-2 flex flex-col justify-between gap-3 md:mb-3 lg:flex-row lg:items-center">
 
-            {/* LEFT */}
             <div className="flex-1">
-
-                <h1 className="text-3xl md:text-4xl font-black text-slate-800 leading-tight tracking-tight max-w-xl">
-
-                    {title}
-
-                </h1>
-
-                <p className="mt-2 text-sm text-gray-400 font-medium leading-relaxed">
-
-                    Selamat datang kembali di sistem manajemen{" "}
-
-                    <span className="text-indigo-600 font-bold">
-                        TokoBuku Cendakia
-                    </span>
-
-                </p>
-
-            </div>
-
-            {/* RIGHT */}
-            {isDashboard && (
-
-                <div className="flex items-center">
-
-                    {/* DATE CARD */}
-                    <div className="bg-white border border-gray-100 shadow-sm rounded-2xl px-4 py-3 flex items-center gap-3 hover:shadow-md transition-all">
-
-                        {/* ICON */}
-                        <div className="w-11 h-11 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center shrink-0">
-
-                            <FaCalendarAlt size={16} />
-
-                        </div>
-
-                        {/* TEXT */}
-                        <div>
-
-                            <p className="text-[10px] uppercase tracking-widest font-black text-gray-400">
-
-                                Hari Ini
-
-                            </p>
-
-                            <h3 className="text-sm font-black text-slate-700 leading-tight">
-
-                                {today}
-
-                            </h3>
-
-                        </div>
-
-                    </div>
-
+                <div className="inline-flex items-center rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.3em] text-indigo-600">
+                    Toko Buku Cendakia
                 </div>
 
+                <h1 className="mt-3 max-w-xl text-3xl font-black leading-tight tracking-tight text-slate-800 md:text-4xl">
+                    {title}
+                </h1>
+
+                <p className="mt-2 text-sm font-medium leading-relaxed text-slate-500">
+                    Selamat datang kembali di sistem manajemen
+                    <span className="ml-1 font-bold text-indigo-600">TokoBuku Cendakia</span>
+                </p>
+            </div>
+
+            {isDashboard && (
+                <div className="flex items-center">
+                    <div className="flex items-center gap-3 rounded-[24px] border border-slate-200 bg-white px-4 py-3 shadow-sm transition-all duration-200 hover:shadow-md">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 text-orange-500">
+                            <FaCalendarAlt size={16} />
+                        </div>
+
+                        <div>
+                            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
+                                Hari Ini
+                            </p>
+                            <h3 className="text-sm font-black leading-tight text-slate-700">
+                                {today}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
             )}
 
         </div>

@@ -6,16 +6,16 @@ export default function Button({
 }) {
 
     const types = {
-        primary: "bg-indigo-600 hover:bg-indigo-700 text-white",
-        secondary: "bg-gray-200 hover:bg-gray-300 text-gray-700",
-        success: "bg-green-600 hover:bg-green-700 text-white",
-        danger: "bg-red-600 hover:bg-red-700 text-white",
+        primary: "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-100",
+        secondary: "bg-slate-100 hover:bg-slate-200 text-slate-700",
+        success: "bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-100",
+        danger: "bg-rose-600 hover:bg-rose-700 text-white shadow-lg shadow-rose-100",
     };
 
     return (
         <button
             onClick={onClick}
-            className={`${types[type]} px-5 py-2.5 rounded-2xl text-sm font-bold transition-all active:scale-95 ${className}`}
+            className={`${types[type]} rounded-2xl px-5 py-2.5 text-sm font-bold transition-all duration-200 active:scale-95 ${className}`}
         >
             {children}
         </button>

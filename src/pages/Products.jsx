@@ -50,7 +50,8 @@ const dummyProducts = [
 export default function Products() {
 
     return (
-        <div className="space-y-8 bg-[#F8F9FD] min-h-screen p-2">
+        <div className="w-full">
+            <div className="mx-auto w-full space-y-4 md:space-y-5">
 
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -65,21 +66,21 @@ export default function Products() {
                     </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
 
-                    <div className="relative">
+                    <div className="relative w-full sm:w-auto">
 
                         <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300" />
 
                         <input
                             type="text"
                             placeholder="Cari buku..."
-                            className="pl-10 pr-4 py-2.5 bg-white border-none rounded-2xl shadow-sm text-sm focus:ring-2 focus:ring-indigo-500/20 w-64"
+                            className="pl-10 pr-4 py-2.5 bg-white border-none rounded-2xl shadow-sm text-sm focus:ring-2 focus:ring-indigo-500/20 w-full sm:w-64"
                         />
 
                     </div>
 
-                    <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-2xl text-sm font-bold shadow-lg shadow-indigo-100 transition-all active:scale-95">
+                    <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-2xl text-sm font-bold shadow-lg shadow-indigo-100 transition-all active:scale-95">
 
                         <FaPlus size={12} />
 
@@ -92,9 +93,9 @@ export default function Products() {
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
-
-                <table className="w-full text-left border-collapse">
+            <div className="overflow-hidden rounded-[2rem] border border-gray-100 bg-white shadow-sm">
+                <div className="max-h-[65vh] overflow-auto">
+                    <table className="min-w-[720px] w-full border-collapse text-left">
 
                     <thead>
                         <tr className="border-b border-gray-50">
@@ -200,7 +201,9 @@ export default function Products() {
                                             />
 
                                             <span className="text-sm font-bold text-slate-700">
-                                                {product.stock}
+                                                {product.stock > 0
+                                                    ? `${product.stock} pcs`
+                                                    : "Pre-order"}
                                             </span>
 
                                         </div>
@@ -208,7 +211,7 @@ export default function Products() {
                                         <p className="text-[10px] text-gray-400 font-medium">
                                             {product.stock > 0
                                                 ? "Tersedia"
-                                                : "Habis"}
+                                                : "Pre-order tersedia"}
                                         </p>
 
                                     </div>
@@ -242,6 +245,9 @@ export default function Products() {
 
             </div>
 
+        </div>
+
+        </div>
         </div>
     );
 }

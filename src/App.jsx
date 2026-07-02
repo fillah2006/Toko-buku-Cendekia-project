@@ -1,13 +1,18 @@
 import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import Loading from "./components/Loading";
+import { Loading } from "./components";
+import ProtectedRoute from "./components/ProtectedRoute";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 
 // ==============================
 // LAZY LOADING PAGES
 // ==============================
+
+const Landing = React.lazy(() =>
+    import("./pages/Landing")
+);
 
 const Dashboard = React.lazy(() =>
     import("./pages/Dashboard")
@@ -33,11 +38,6 @@ const AddCustomer = React.lazy(() =>
     import("./pages/AddCustomer")
 );
 
-// COMPONENT UI PAGE
-const Components = React.lazy(() =>
-    import("./pages/Components")
-);
-
 // AUTH PAGES
 const Login = React.lazy(() =>
     import("./pages/auth/Login")
@@ -51,21 +51,32 @@ const Forgot = React.lazy(() =>
     import("./pages/auth/Forgot")
 );
 
+const Users = React.lazy(() =>
+    import("./pages/Users")
+);
+
 export default function App() {
 
     return (
         <Suspense fallback={<Loading />}>
 
             <Routes>
+                <Route path="/" element={<Landing />} />
 
                 {/* ========================= */}
                 {/* MAIN LAYOUT */}
                 {/* ========================= */}
-                <Route element={<MainLayout />}>
+                <Route
+                    element={
+                        <ProtectedRoute>
+                            <MainLayout />
+                        </ProtectedRoute>
+                    }
+                >
 
                     {/* DASHBOARD */}
                     <Route
-                        path="/"
+                        path="/dashboard"
                         element={<Dashboard />}
                     />
 
@@ -99,10 +110,10 @@ export default function App() {
                         element={<Transactions />}
                     />
 
-                    {/* COMPONENT UI */}
+                    {/* USERS */}
                     <Route
-                        path="/components"
-                        element={<Components />}
+                        path="/users"
+                        element={<Users />}
                     />
 
                 </Route>

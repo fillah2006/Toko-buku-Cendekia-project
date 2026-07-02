@@ -4,7 +4,7 @@ export default function SectionCard({
 }) {
     return (
         <div
-            className={`bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100/50 ${className}`}
+            className={`rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm sm:p-8 ${className}`}
         >
             {children}
         </div>

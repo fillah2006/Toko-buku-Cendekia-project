@@ -4,13 +4,13 @@ export default function Table({
 }) {
     return (
         <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="min-w-[760px] w-full border-collapse text-left">
                 <thead>
-                    <tr className="border-b border-gray-50">
+                    <tr className="border-b border-slate-200 bg-slate-50/70">
                         {headers.map((header, index) => (
                             <th
                                 key={index}
-                                className="px-6 py-5 text-[11px] font-black text-gray-400 uppercase tracking-widest"
+                                className="px-6 py-4 text-[11px] font-black uppercase tracking-[0.25em] text-slate-400"
                             >
                                 {header}
                             </th>
@@ -18,7 +18,7 @@ export default function Table({
                     </tr>
                 </thead>
 
-                <tbody className="divide-y divide-gray-50">
+                <tbody className="divide-y divide-slate-100">
                     {children}
                 </tbody>
             </table>

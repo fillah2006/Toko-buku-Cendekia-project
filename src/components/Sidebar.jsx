@@ -9,12 +9,12 @@ import {
   FaCreditCard,
   FaUserAlt,
   FaQuestionCircle,
-  FaLayerGroup
+  FaTimes
 } from "react-icons/fa";
 
 import logo from "../assets/logo.png";
 
-export default function Sidebar() {
+export default function Sidebar({ closeSidebar }) {
 
   const location = useLocation();
 
@@ -25,7 +25,7 @@ export default function Sidebar() {
 
     {
       name: "Dashboard",
-      path: "/",
+      path: "/dashboard",
       icon: <FaHome />
     },
 
@@ -33,6 +33,12 @@ export default function Sidebar() {
       name: "Customers",
       path: "/customers",
       icon: <FaUsers />
+    },
+
+    {
+      name: "Users",
+      path: "/users",
+      icon: <FaUserAlt />
     },
 
     {
@@ -45,13 +51,6 @@ export default function Sidebar() {
       name: "Transactions",
       path: "/transactions",
       icon: <FaShoppingCart />
-    },
-
-    // COMPONENT UI
-    {
-      name: "Components",
-      path: "/components",
-      icon: <FaLayerGroup />
     },
 
   ];
@@ -100,20 +99,17 @@ export default function Sidebar() {
 
         <Link
           to={item.path}
-          className={`flex items-center gap-4 px-8 py-3.5 transition-all duration-300 font-bold text-sm rounded-l-2xl
-          
-          ${isActive
-              ? "bg-indigo-50 text-indigo-600 border-r-4 border-indigo-600"
-              : "text-gray-400 hover:text-gray-600 hover:bg-slate-50"
+          onClick={() => closeSidebar?.()}
+          className={`flex items-center gap-4 rounded-2xl px-5 py-3.5 text-sm font-bold transition-all duration-300 ${isActive
+              ? "bg-white text-indigo-700 shadow-lg shadow-indigo-950/10"
+              : "text-slate-300 hover:bg-white/10 hover:text-white"
             }`}
         >
 
           <span
-            className={`text-lg transition-all
-              
-              ${isActive
+            className={`text-lg transition-all ${isActive
                 ? "text-indigo-600"
-                : "text-gray-300"
+                : "text-slate-400"
               }`}
           >
 
@@ -131,18 +127,31 @@ export default function Sidebar() {
 
   return (
 
-    <div className="w-64 bg-white border-r border-gray-100 min-h-screen fixed h-full flex flex-col py-6">
+    <div className="flex h-full w-64 flex-col bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 py-6 text-white">
 
       {/* ========================= */}
       {/* LOGO */}
       {/* ========================= */}
-      <div className="mb-10 px-4 flex justify-center items-center">
+      <div className="mb-8 flex items-center justify-between gap-4 px-4">
 
-        <img
-          src={logo}
-          alt="Logo Utama Cendakia"
-          className="h-32 w-full object-contain drop-shadow-sm transition-transform duration-500 hover:scale-105"
-        />
+        <div className="rounded-[24px] border border-white/10 bg-white/10 p-2 backdrop-blur-sm">
+          <img
+            src={logo}
+            alt="Logo Utama Cendakia"
+            className="h-20 w-full max-w-[140px] object-contain drop-shadow-sm transition-transform duration-500 hover:scale-105"
+          />
+        </div>
+
+        {closeSidebar && (
+          <button
+            type="button"
+            onClick={closeSidebar}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-slate-200 shadow-sm transition hover:bg-white/20 md:hidden"
+          >
+            <FaTimes className="text-lg" />
+            <span className="sr-only">Tutup menu</span>
+          </button>
+        )}
 
       </div>
 
@@ -152,15 +161,15 @@ export default function Sidebar() {
       <nav className="flex-1 overflow-y-auto scrollbar-hide">
 
         {/* MAIN MENU */}
-        <div className="mb-10">
+        <div className="mb-8">
 
-          <p className="px-8 text-[10px] font-black text-gray-300 mb-4 uppercase tracking-[0.2em]">
+          <p className="mb-3 px-5 text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">
 
             Menu Utama
 
           </p>
 
-          <ul className="space-y-1">
+          <ul className="space-y-1.5 px-2">
 
             {mainMenu.map((item, index) => (
 
@@ -178,13 +187,13 @@ export default function Sidebar() {
         {/* OTHER MENU */}
         <div>
 
-          <p className="px-8 text-[10px] font-black text-gray-400 mb-4 uppercase tracking-[0.2em]">
+          <p className="mb-3 px-5 text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">
 
             Lainnya
 
           </p>
 
-          <ul className="space-y-1">
+          <ul className="space-y-1.5 px-2">
 
             {otherMenu.map((item, index) => (
 
@@ -204,17 +213,17 @@ export default function Sidebar() {
       {/* ========================= */}
       {/* FOOTER */}
       {/* ========================= */}
-      <div className="px-8 mt-auto pt-6 border-t border-gray-50">
+      <div className="mt-auto border-t border-white/10 px-4 pt-6">
 
-        <div className="bg-slate-50 p-4 rounded-2xl">
+        <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
 
-          <p className="text-[10px] font-bold text-slate-400 uppercase">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">
 
             Versi Aplikasi
 
           </p>
 
-          <p className="text-xs font-black text-slate-800 tracking-tight">
+          <p className="mt-1 text-sm font-black tracking-tight text-white">
 
             Cendakia Pro v2.0
 

@@ -56,97 +56,100 @@ export default function ProductDetail() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto">
+        <div className="bg-[#F8F9FD] min-h-screen py-6">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+                <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-6 sm:p-8">
+                    <div className="flex flex-col gap-8 md:flex-row">
 
-            <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8">
+                        {/* Gambar Buku */}
+                        <div className="md:w-1/2 flex justify-center">
 
-                <div className="flex flex-col md:flex-row gap-8">
-
-                    {/* Gambar Buku */}
-                    <div className="flex justify-center">
-
-                        <img
-                            src={product.image}
-                            alt={product.title}
-                            loading="lazy"
-                            className="w-56 h-80 object-cover rounded-2xl shadow-md border border-gray-100"
-                        />
-
-                    </div>
-
-                    {/* Detail Buku */}
-                    <div className="flex-1">
-
-                        <p className="text-sm text-indigo-600 font-bold uppercase tracking-widest mb-2">
-                            {product.category}
-                        </p>
-
-                        <h1 className="text-4xl font-black text-slate-800 mb-2">
-                            {product.title}
-                        </h1>
-
-                        <p className="text-lg text-gray-500 mb-6">
-                            {product.author}
-                        </p>
-
-                        <div className="space-y-5">
-
-                            {/* Harga */}
-                            <div>
-
-                                <p className="text-xs text-gray-400 uppercase font-bold">
-                                    Harga
-                                </p>
-
-                                <p className="text-2xl font-black text-slate-800">
-                                    {product.price}
-                                </p>
-
-                            </div>
-
-                            {/* Stock */}
-                            <div>
-
-                                <p className="text-xs text-gray-400 uppercase font-bold">
-                                    Stok
-                                </p>
-
-                                <p className="text-lg font-bold text-slate-700">
-                                    {product.stock} Buku
-                                </p>
-
-                            </div>
-
-                            {/* Status */}
-                            <div>
-
-                                <p className="text-xs text-gray-400 uppercase font-bold">
-                                    Status
-                                </p>
-
-                                <p
-                                    className={`font-bold ${
-                                        product.stock > 0
-                                            ? "text-green-600"
-                                            : "text-red-600"
-                                    }`}
-                                >
-                                    {product.stock > 0
-                                        ? "Tersedia"
-                                        : "Habis"}
-                                </p>
-
-                            </div>
+                            <img
+                                src={product.image}
+                                alt={product.title}
+                                loading="lazy"
+                                className="w-full max-w-xl h-auto object-cover rounded-2xl shadow-md border border-gray-100"
+                            />
 
                         </div>
 
-                        {/* Tombol */}
-                        <Link
-                            to="/products"
-                            className="inline-block mt-8 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-2xl font-bold transition-all"
-                        >
-                            Kembali ke Produk
-                        </Link>
+                        {/* Detail Buku */}
+                        <div className="flex-1 space-y-6">
+
+                            <div>
+                                <p className="text-sm text-indigo-600 font-bold uppercase tracking-widest mb-2">
+                                    {product.category}
+                                </p>
+
+                                <h1 className="text-4xl font-black text-slate-800 mb-2">
+                                    {product.title}
+                                </h1>
+
+                                <p className="text-lg text-gray-500 mb-6">
+                                    {product.author}
+                                </p>
+                            </div>
+
+                            <div className="space-y-5">
+
+                                {/* Harga */}
+                                <div>
+
+                                    <p className="text-xs text-gray-400 uppercase font-bold">
+                                        Harga
+                                    </p>
+
+                                    <p className="text-2xl font-black text-slate-800">
+                                        {product.price}
+                                    </p>
+
+                                </div>
+
+                                {/* Stock */}
+                                <div>
+
+                                    <p className="text-xs text-gray-400 uppercase font-bold">
+                                        Stok
+                                    </p>
+
+                                    <p className="text-lg font-bold text-slate-700">
+                                        {product.stock} Buku
+                                    </p>
+
+                                </div>
+
+                                {/* Status */}
+                                <div>
+
+                                    <p className="text-xs text-gray-400 uppercase font-bold">
+                                        Status
+                                    </p>
+
+                                    <p
+                                        className={`font-bold ${
+                                            product.stock > 0
+                                                ? "text-green-600"
+                                                : "text-red-600"
+                                        }`}
+                                    >
+                                        {product.stock > 0
+                                            ? "Tersedia"
+                                            : "Habis"}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            {/* Tombol */}
+                            <Link
+                                to="/products"
+                                className="inline-block mt-8 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-2xl font-bold transition-all"
+                            >
+                                Kembali ke Produk
+                            </Link>
+
+                        </div>
 
                     </div>
 
